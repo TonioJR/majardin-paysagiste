@@ -14,9 +14,16 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-        body { display: flex; background: var(--gris-clair); color: var(--texte); min-height: 100vh; }
+        
+        body { 
+            display: flex; 
+            background: var(--gris-clair); 
+            color: var(--texte); 
+            min-height: 100vh; 
+            flex-direction: row; /* Par défaut : côte à côte sur PC */
+        }
 
-        /* --- SIDEBAR GAUCHE --- */
+        /* --- SIDEBAR (PC) --- */
         .sidebar {
             width: 280px;
             height: 100vh;
@@ -28,55 +35,34 @@
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
         }
 
-        .sidebar-logo {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 20px;
-        }
-
-        .logo-img {
-            width: 120px;
-            height: auto;
-            margin-bottom: 15px;
-            border-radius: 8px;
-        }
+        .sidebar-logo { text-align: center; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
+        .logo-img { width: 100px; height: auto; margin-bottom: 10px; border-radius: 8px; }
 
         .sidebar-nav { list-style: none; flex-grow: 1; }
-        .sidebar-nav li { margin-bottom: 15px; }
+        .sidebar-nav li { margin-bottom: 10px; }
         .sidebar-nav a {
             color: white;
             text-decoration: none;
             font-size: 1.1rem;
             display: block;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 12px;
+            border-radius: 8px;
             transition: 0.3s;
         }
         .sidebar-nav a:hover { background: var(--vert-clair); color: var(--vert-fonce); }
 
-        .sidebar-contact {
-            margin-top: 30px;
-            font-size: 0.85rem;
-            color: #A9C2DF;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-        }
-
-        /* --- CONTENU --- */
+        /* --- CONTENU PRINCIPAL --- */
         main {
-            margin-left: 280px;
+            margin-left: 280px; /* Espace pour la sidebar sur PC */
             width: calc(100% - 280px);
-            min-height: 100vh;
         }
 
         header {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1558904541-efa843a96f09?auto=format&fit=crop&w=1600&q=80') center/cover;
-            height: 50vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -86,48 +72,47 @@
             padding: 20px;
         }
 
-        section { padding: 80px 40px; max-width: 1000px; margin: 0 auto; }
-        .titre { font-size: 2.5rem; color: var(--vert-fonce); margin-bottom: 30px; border-left: 10px solid var(--vert-clair); padding-left: 20px; }
+        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+        .titre { font-size: 2.2rem; color: var(--vert-fonce); margin-bottom: 25px; border-left: 8px solid var(--vert-clair); padding-left: 15px; }
 
-        .equipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .membre { background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 
-        #devis {
-            background: var(--vert-fonce);
-            color: white;
-            border-radius: 15px;
-            padding: 50px;
-            margin: 40px auto;
-        }
-        .form-group { margin-bottom: 20px; }
+        #devis { background: var(--vert-fonce); color: white; border-radius: 15px; padding: 40px 20px; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--vert-clair); }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: none;
-            font-size: 1rem;
-        }
-        .form-group select { background-color: white; cursor: pointer; }
-        
-        .btn-submit {
-            background: var(--vert-clair);
-            color: var(--vert-fonce);
-            border: none;
-            padding: 15px 30px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-            transition: 0.3s;
-        }
-        .btn-submit:hover { background: white; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border-radius: 8px; border: none; font-size: 1rem; }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; }
-            main { margin-left: 0; width: 100%; }
-            .equipe-grid { grid-template-columns: 1fr; }
+        .btn-submit { background: var(--vert-clair); color: var(--vert-fonce); border: none; padding: 15px; font-weight: bold; border-radius: 8px; width: 100%; cursor: pointer; font-size: 1.1rem; }
+
+        /* --- 📱 ADAPTATION MOBILE (MEDIA QUERIES) --- */
+        @media (max-width: 900px) {
+            body { flex-direction: column; } /* On empile tout verticalement */
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative; /* La sidebar ne flotte plus à gauche */
+                padding: 20px;
+            }
+
+            main {
+                margin-left: 0; /* Plus besoin de décalage */
+                width: 100%;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap; /* Les liens se mettent les uns à côté des autres */
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .sidebar-nav li { margin-bottom: 0; }
+            .sidebar-nav a { padding: 8px 15px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.2); }
+
+            header h1 { font-size: 2.2rem !important; }
+            .titre { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -137,99 +122,71 @@
         <div class="sidebar-logo">
             <img src="logo.png" alt="Logo MAJARDIN" class="logo-img">
             <h2>MAJARDIN</h2>
-            <p style="font-size: 0.7rem; color: var(--vert-clair);">PÉVÈLE CAREMBAULT</p>
         </div>
 
         <ul class="sidebar-nav">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#expertise">Savoir-Faire</a></li>
+            <li><a href="#expertise">Expertise</a></li>
             <li><a href="#equipe">L'Équipe</a></li>
-            <li><a href="#portfolio">Réalisations</a></li>
-            <li><a href="#devis">Demander un Devis</a></li>
+            <li><a href="#portfolio">Chantiers</a></li>
+            <li><a href="#devis">Devis</a></li>
         </ul>
 
-        <div class="sidebar-contact">
-            <p>📞 <strong>06 12 26 79 66</strong></p>
-            <p>✉️ <strong>majardin59@gmail.com</strong></p>
-            <p style="margin-top: 15px; color: white;">Arthur, Martin & Justin</p>
+        <div style="margin-top: 20px; text-align: center; font-size: 0.8rem; opacity: 0.8;" class="mobile-hide">
+            <p>06 12 26 79 66</p>
+            <p>majardin59@gmail.com</p>
         </div>
     </aside>
 
     <main>
         <header id="accueil">
-            <h1 style="font-size: 3.5rem;">VOTRE JARDIN, <span style="color: var(--vert-clair);">NOTRE PASSION.</span></h1>
-            <p>Paysagistes spécialisés en Création et Entretien</p>
+            <h1 style="font-size: 3.5rem; text-transform: uppercase;">Votre Jardin,<br><span style="color: var(--vert-clair);">Notre Passion.</span></h1>
         </header>
 
         <section id="expertise">
-            <h2 class="titre">Notre Expertise</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 20px;">
-                Situés au cœur de la <strong>Pévèle Carembault</strong>, nous intervenons pour transformer et entretenir vos espaces verts.
-            </p>
-            <ul style="list-style: none; font-size: 1.1rem; line-height: 2;">
-                <li>🌱 <strong>Création :</strong> Massifs, engazonnement, terrasses.</li>
-                <li>✂️ <strong>Entretien :</strong> Tonte, taille de haies, débroussaillage.</li>
-                <li>🌳 <strong>Élagage :</strong> Taille raisonnée et soins des arbres.</li>
-            </ul>
-        </section>
-
-        <section id="equipe">
-            <h2 class="titre">L'Équipe</h2>
-            <div class="equipe-grid">
-                <div class="membre"><h3>Arthur</h3><p>Paysagiste</p></div>
-                <div class="membre"><h3>Martin</h3><p>Paysagiste</p></div>
-                <div class="membre"><h3>Justin</h3><p>Paysagiste</p></div>
+            <h2 class="titre">Savoir-Faire</h2>
+            <div class="grid">
+                <div class="card"><h3>🌱 Création</h3><p>Aménagements, engazonnement et massifs sur-mesure.</p></div>
+                <div class="card"><h3>✂️ Entretien</h3><p>Tonte, taille de haies et remise au propre de vos extérieurs.</p></div>
+                <div class="card"><h3>🌳 Élagage</h3><p>Soins, taille raisonnée et abattage si nécessaire.</p></div>
             </div>
         </section>
 
         <section id="portfolio">
             <h2 class="titre">Réalisations</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                <div style="height: 200px; background: #ddd; border-radius: 8px; overflow: hidden;">
-                    <img src="chantier1.jpg" alt="Réalisation" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div style="height: 200px; background: #ddd; border-radius: 8px; overflow: hidden;">
-                    <img src="chantier2.jpg" alt="Réalisation" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div style="height: 200px; background: #ddd; border-radius: 8px; overflow: hidden;">
-                    <img src="chantier3.jpg" alt="Réalisation" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+            <div class="grid">
+                <div style="height: 200px; background: #ccc; border-radius: 10px; overflow: hidden;"><img src="chantier1.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                <div style="height: 200px; background: #ccc; border-radius: 10px; overflow: hidden;"><img src="chantier2.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                <div style="height: 200px; background: #ccc; border-radius: 10px; overflow: hidden;"><img src="chantier3.jpg" style="width: 100%; height: 100%; object-fit: cover;"></div>
             </div>
         </section>
 
         <section id="devis">
-            <h2 style="color: var(--vert-clair); margin-bottom: 20px;">Demander un devis gratuit</h2>
-            <form action="#">
+            <h2 style="color: var(--vert-clair); margin-bottom: 20px; text-align: center;">Devis Gratuit</h2>
+            <form>
                 <div class="form-group">
                     <label>Nom Complet</label>
                     <input type="text" placeholder="Votre nom" required>
                 </div>
                 <div class="form-group">
-                    <label>Ville de l'intervention</label>
-                    <input type="text" placeholder="Ex: Templeuve, Cysoing..." required>
-                </div>
-                
-                <div class="form-group">
                     <label>Type d'intervention</label>
                     <select required>
                         <option value="" disabled selected>Choisissez un service...</option>
-                        <option value="entretien">Entretien régulier (Tonte, taille...)</option>
-                        <option value="creation">Création de jardin / Massifs</option>
-                        <option value="elagage">Élagage / Soins des arbres</option>
-                        <option value="autre">Autre projet</option>
+                        <option value="entretien">Entretien régulier</option>
+                        <option value="creation">Création / Aménagement</option>
+                        <option value="elagage">Élagage / Soins</option>
+                        <option value="autre">Autre</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label>Votre Message / Projet</label>
-                    <textarea rows="4" placeholder="Décrivez vos besoins..."></textarea>
+                    <label>Votre Projet</label>
+                    <textarea rows="4" placeholder="Détaillez votre besoin..."></textarea>
                 </div>
-                <button type="submit" class="btn-submit">ENVOYER LA DEMANDE</button>
+                <button type="submit" class="btn-submit">DEMANDER MON DEVIS</button>
             </form>
         </section>
 
-        <footer style="text-align: center; padding: 40px; color: #888;">
-            © 2026 MAJARDIN - 06 12 26 79 66 - majardin59@gmail.com
+        <footer style="text-align: center; padding: 30px; font-size: 0.8rem; color: #888;">
+            © 2026 MAJARDIN - Pévèle Carembault - 06 12 26 79 66
         </footer>
     </main>
 
