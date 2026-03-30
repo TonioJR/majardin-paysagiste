@@ -9,176 +9,240 @@
             --vert-fonce: #1B4332;
             --vert-clair: #B5D51E;
             --blanc: #FFFFFF;
-            --gris-fond: #F4F6F8;
-            --texte: #333;
+            --gris-fond: #F8FAF9;
+            --texte: #2D3748;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
         body { display: flex; background: var(--gris-fond); color: var(--texte); min-height: 100vh; flex-direction: row; }
 
         /* --- SIDEBAR PC --- */
         .sidebar {
-            width: 280px;
+            width: 300px;
             height: 100vh;
             background: var(--vert-fonce);
             color: white;
             position: fixed;
             left: 0; top: 0;
-            padding: 30px 20px;
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
             z-index: 1000;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
         }
-        .sidebar-logo { text-align: center; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
-        .logo-img-pc { width: 100px; height: auto; border-radius: 8px; }
+        .sidebar-logo { text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 25px; }
+        .logo-img-pc { width: 130px; height: auto; border-radius: 12px; transition: 0.3s; }
         .sidebar-nav { list-style: none; flex-grow: 1; }
-        .sidebar-nav a { color: white; text-decoration: none; font-size: 1.1rem; display: block; padding: 12px; border-radius: 8px; transition: 0.3s; }
-        .sidebar-nav a:hover { background: var(--vert-clair); color: var(--vert-fonce); }
-
-        /* --- CONTENU --- */
-        main { margin-left: 280px; width: calc(100% - 280px); }
-        header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1558904541-efa843a96f09?auto=format&fit=crop&w=1600&q=80') center/cover;
-            height: 50vh; display: flex; justify-content: center; align-items: center; color: white; text-align: center;
+        .sidebar-nav a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 1.1rem; 
+            font-weight: 600;
+            display: block; 
+            padding: 15px; 
+            border-radius: 10px; 
+            transition: 0.3s; 
+            margin-bottom: 5px;
         }
-        header h1 { font-size: 3.5rem; text-transform: uppercase; }
+        .sidebar-nav a:hover { background: var(--vert-clair); color: var(--vert-fonce); transform: translateX(5px); }
 
-        section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
-        .titre { font-size: 2.2rem; color: var(--vert-fonce); margin-bottom: 30px; border-left: 8px solid var(--vert-clair); padding-left: 15px; }
+        .sidebar-contact-info { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-contact-info p { font-size: 0.9rem; margin-bottom: 10px; color: var(--vert-clair); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
+        /* --- CONTENU PRINCIPAL --- */
+        main { margin-left: 300px; width: calc(100% - 300px); }
+        
+        header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558904541-efa843a96f09?auto=format&fit=crop&w=1600&q=80') center/cover;
+            height: 65vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+        }
+        header h1 { font-size: 4rem; text-transform: uppercase; font-weight: 900; letter-spacing: -1px; }
+        header h1 span { color: var(--vert-clair); }
 
-        /* --- SECTION EQUIPE --- */
-        .equipe-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid var(--vert-clair); }
+        section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+        .titre-vrai { font-size: 2.8rem; color: var(--vert-fonce); margin-bottom: 40px; position: relative; }
+        .titre-vrai::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 80px; height: 6px; background: var(--vert-clair); }
 
-        #devis { background: var(--vert-fonce); color: white; border-radius: 15px; padding: 40px; margin: 20px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--vert-clair); }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border-radius: 8px; border: none; font-size: 1rem; }
-        .btn-submit { background: var(--vert-clair); color: var(--vert-fonce); border: none; padding: 15px; font-weight: bold; border-radius: 8px; width: 100%; cursor: pointer; font-size: 1.1rem; }
+        /* --- GRILLES --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s; border: 1px solid #eee; }
+        .card:hover { transform: translateY(-10px); border-color: var(--vert-clair); }
+        .card h3 { color: var(--vert-fonce); margin-bottom: 15px; font-size: 1.6rem; }
 
-        /* --- MOBILE --- */
-        .mobile-header, .mobile-menu-overlay { display: none; }
+        /* --- DEVIS BOX --- */
+        #devis { background: var(--vert-fonce); color: white; border-radius: 30px; padding: 60px; margin: 40px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group.full { grid-column: span 2; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--vert-clair); }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; padding: 15px; border-radius: 12px; border: 2px solid transparent; font-size: 1rem; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus { border-color: var(--vert-clair); }
+        .btn-vrai { 
+            background: var(--vert-clair); color: var(--vert-fonce); border: none; padding: 20px; 
+            font-weight: 900; border-radius: 12px; width: 100%; cursor: pointer; font-size: 1.2rem; text-transform: uppercase; transition: 0.3s;
+        }
+        .btn-vrai:hover { background: white; letter-spacing: 1px; }
 
-        @media (max-width: 900px) {
+        /* --- MOBILE UI --- */
+        .mobile-top-bar, .hamburger, .mobile-menu { display: none; }
+
+        @media (max-width: 1024px) {
             body { flex-direction: column; }
             .sidebar { display: none; }
             main { margin-left: 0; width: 100%; }
-            .mobile-header { display: flex; flex-direction: column; align-items: center; background: var(--vert-fonce); padding: 30px 20px; border-bottom: 5px solid var(--vert-clair); }
-            .logo-img-mobile { width: 180px; height: auto; border-radius: 15px; }
-            .hamburger-btn { position: absolute; top: 25px; right: 25px; background: none; border: none; color: var(--vert-clair); font-size: 2.2rem; }
-            .mobile-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(27,67,50,0.98); z-index: 1500; flex-direction: column; justify-content: center; align-items: center; gap: 20px; }
-            .mobile-menu-overlay a { color: white; text-decoration: none; font-size: 1.8rem; font-weight: bold; }
-            header h1 { font-size: 2rem !important; }
+
+            /* Bandeau Contact Mobile Rapide */
+            .mobile-top-bar { 
+                display: flex; justify-content: space-around; align-items: center; 
+                background: var(--vert-clair); padding: 10px; position: sticky; top: 0; z-index: 2000; font-weight: bold;
+            }
+            .mobile-top-bar a { text-decoration: none; color: var(--vert-fonce); font-size: 0.9rem; }
+
+            .mobile-header-logo { background: var(--vert-fonce); padding: 40px 20px; text-align: center; border-bottom: 8px solid var(--vert-clair); }
+            .logo-mobile { width: 180px; height: auto; border-radius: 15px; }
+
+            .hamburger { 
+                display: block; position: fixed; top: 65px; right: 20px; background: var(--vert-clair); 
+                color: var(--vert-fonce); border: none; padding: 10px 15px; border-radius: 8px; font-size: 1.5rem; z-index: 3000; font-weight: bold;
+            }
+
+            .mobile-menu {
+                display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: var(--vert-fonce); z-index: 2500; flex-direction: column; justify-content: center; align-items: center; gap: 25px;
+            }
+            .mobile-menu a { color: white; text-decoration: none; font-size: 2rem; font-weight: 800; }
+            
+            header h1 { font-size: 2.2rem !important; }
+            #devis { margin: 15px; padding: 30px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
-        <div class="sidebar-logo"><img src="logo.png" alt="Logo MAJARDIN" class="logo-img-pc"></div>
+        <div class="sidebar-logo">
+            <img src="logo.png" alt="Logo MAJARDIN" class="logo-img-pc">
+        </div>
         <ul class="sidebar-nav">
-            <li><a href="#expertise">Savoir-Faire</a></li>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#expertise">Nos Services</a></li>
             <li><a href="#equipe">L'Équipe</a></li>
             <li><a href="#portfolio">Réalisations</a></li>
             <li><a href="#devis">Devis Gratuit</a></li>
         </ul>
-        <div style="margin-top: 20px; text-align: center; font-size: 0.8rem; opacity: 0.8;">
-            <p>06 12 26 79 66</p>
-            <p>majardin59@gmail.com</p>
+        <div class="sidebar-contact-info">
+            <p>📞 06 12 26 79 66</p>
+            <p>✉️ majardin59@gmail.com</p>
+            <p>📍 Pévèle Carembault</p>
         </div>
     </aside>
 
-    <div class="mobile-header">
-        <img src="logo.png" alt="MAJARDIN" class="logo-img-mobile">
-        <button class="hamburger-btn" onclick="toggleMenu()">&#9776;</button>
+    <div class="mobile-top-bar">
+        <a href="tel:0612267966">📞 APPELER : 06 12 26 79 66</a>
+        <a href="mailto:majardin59@gmail.com">✉️ EMAIL</a>
     </div>
 
-    <div class="mobile-menu-overlay" id="mobileMenu">
-        <button style="position:absolute; top:25px; right:25px; background:none; border:none; color:white; font-size:2.5rem;" onclick="toggleMenu()">×</button>
-        <a href="#expertise" onclick="toggleMenu()">Savoir-Faire</a>
-        <a href="#equipe" onclick="toggleMenu()">L'Équipe</a>
-        <a href="#portfolio" onclick="toggleMenu()">Réalisations</a>
-        <a href="#devis" onclick="toggleMenu()">Devis Gratuit</a>
+    <div class="mobile-header-logo">
+        <img src="logo.png" alt="MAJARDIN" class="logo-mobile">
     </div>
+
+    <button class="hamburger" onclick="toggleMenu()">MENU</button>
+
+    <nav class="mobile-menu" id="mMenu">
+        <button style="position:absolute; top:20px; right:20px; color:white; background:none; border:none; font-size:3rem;" onclick="toggleMenu()">×</button>
+        <a href="#expertise" onclick="toggleMenu()">SERVICES</a>
+        <a href="#equipe" onclick="toggleMenu()">L'ÉQUIPE</a>
+        <a href="#portfolio" onclick="toggleMenu()">RÉALISATIONS</a>
+        <a href="#devis" onclick="toggleMenu()">DEVIS</a>
+    </nav>
 
     <main>
         <header id="accueil">
-            <h1>VOTRE JARDIN,<br><span style="color: var(--vert-clair);">NOTRE PASSION.</span></h1>
+            <h1>VOTRE JARDIN,<br><span>NOTRE PASSION.</span></h1>
+            <p style="margin-top:20px; font-size: 1.2rem; opacity: 0.9;">Artisans Paysagistes en Pévèle Carembault</p>
         </header>
 
         <section id="expertise">
-            <h2 class="titre">Savoir-Faire</h2>
+            <h2 class="titre-vrai">Notre Savoir-Faire</h2>
             <div class="grid">
-                <div class="card"><h3>🌱 Création</h3><p>Aménagements, engazonnement et massifs sur-mesure.</p></div>
-                <div class="card"><h3>✂️ Entretien</h3><p>Tonte, taille de haies et remise au propre.</p></div>
-                <div class="card"><h3>🌳 Élagage</h3><p>Soins et taille raisonnée de vos arbres.</p></div>
+                <div class="card">
+                    <h3>🌱 Création</h3>
+                    <p>Conception de massifs, engazonnement et aménagement complet de vos espaces extérieurs.</p>
+                </div>
+                <div class="card">
+                    <h3>✂️ Entretien</h3>
+                    <p>Tonte, taille de haies, débroussaillage. Contrats annuels ou interventions ponctuelles.</p>
+                </div>
+                <div class="card">
+                    <h3>🌳 Élagage</h3>
+                    <p>Taille de formation, abattage et soins spécifiques pour la santé de vos arbres.</p>
+                </div>
             </div>
         </section>
 
         <section id="equipe" style="background: white; max-width: 100%;">
-            <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
-                <h2 class="titre">L'Équipe MAJARDIN</h2>
-                <p style="margin-bottom: 30px; font-size: 1.1rem;">Trois associés passionnés, implantés dans la Pévèle Carembault.</p>
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+                <h2 class="titre-vrai">L'Équipe MAJARDIN</h2>
                 <div class="grid">
-                    <div class="card">
-                        <img src="arthur.jpg" alt="Arthur" class="equipe-img">
-                        <h3>Arthur</h3>
-                        <p>Paysagiste</p>
-                    </div>
-                    <div class="card">
-                        <img src="martin.jpg" alt="Martin" class="equipe-img">
-                        <h3>Martin</h3>
-                        <p>Paysagiste</p>
-                    </div>
-                    <div class="card">
-                        <img src="justin.jpg" alt="Justin" class="equipe-img">
-                        <h3>Justin</h3>
-                        <p>Paysagiste</p>
-                    </div>
+                    <div class="card"><img src="arthur.jpg" style="width:100%; border-radius:15px; margin-bottom:15px;"><h3>Arthur</h3><p>Paysagiste</p></div>
+                    <div class="card"><img src="martin.jpg" style="width:100%; border-radius:15px; margin-bottom:15px;"><h3>Martin</h3><p>Paysagiste</p></div>
+                    <div class="card"><img src="justin.jpg" style="width:100%; border-radius:15px; margin-bottom:15px;"><h3>Justin</h3><p>Paysagiste</p></div>
                 </div>
-            </div>
-        </section>
-
-        <section id="portfolio">
-            <h2 class="titre">Réalisations</h2>
-            <div class="grid">
-                <div style="height: 200px; border-radius: 10px; overflow: hidden;"><img src="chantier1.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div style="height: 200px; border-radius: 10px; overflow: hidden;"><img src="chantier2.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div style="height: 200px; border-radius: 10px; overflow: hidden;"><img src="chantier3.jpg" style="width:100%; height:100%; object-fit:cover;"></div>
             </div>
         </section>
 
         <section id="devis">
-            <h2 style="color: var(--vert-clair); margin-bottom: 20px; text-align: center;">Devis Gratuit</h2>
+            <h2 style="color: var(--vert-clair); font-size: 2.5rem; margin-bottom: 30px; text-align: center;">Demander un Devis Gratuit</h2>
             <form>
-                <div class="form-group"><label>Nom Complet</label><input type="text" required></div>
-                <div class="form-group">
-                    <label>Prestation</label>
-                    <select required>
-                        <option value="" disabled selected>Choisissez...</option>
-                        <option value="entretien">Entretien</option>
-                        <option value="creation">Création</option>
-                        <option value="elagage">Élagage</option>
-                    </select>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nom & Prénom</label>
+                        <input type="text" placeholder="Jean Dupont" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Numéro de téléphone</label>
+                        <input type="tel" placeholder="06 00 00 00 00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Adresse Email</label>
+                        <input type="email" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ville de l'intervention</label>
+                        <input type="text" placeholder="Templeuve, Linselles..." required>
+                    </div>
+                    <div class="form-group full">
+                        <label>Type d'intervention</label>
+                        <select required>
+                            <option value="" disabled selected>Choisissez un service...</option>
+                            <option value="entretien">Entretien régulier</option>
+                            <option value="creation">Création / Aménagement</option>
+                            <option value="elagage">Élagage / Soins</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label>Description du projet</label>
+                        <textarea rows="5" placeholder="Détaillez vos besoins ici..."></textarea>
+                    </div>
                 </div>
-                <div class="form-group"><label>Projet</label><textarea rows="4"></textarea></div>
-                <button type="submit" class="btn-submit">DEMANDER MON DEVIS</button>
+                <button type="submit" class="btn-vrai">Envoyer ma demande</button>
             </form>
         </section>
 
-        <footer style="text-align: center; padding: 30px; font-size: 0.8rem; color: #888; border-top: 1px solid #eee;">
-            © 2026 MAJARDIN - 06 12 26 79 66 - Pévèle Carembault.
+        <footer style="text-align: center; padding: 60px 20px; background: #eee; font-weight: bold; color: var(--vert-fonce);">
+            MAJARDIN © 2026 - Pévèle Carembault - 06 12 26 79 66
         </footer>
     </main>
 
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("mobileMenu");
-            menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+            var m = document.getElementById("mMenu");
+            m.style.display = (m.style.display === "flex") ? "none" : "flex";
         }
     </script>
-
 </body>
 </html>
