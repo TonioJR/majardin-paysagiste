@@ -156,6 +156,18 @@
             .form-grid { grid-template-columns: 1fr; }
             .form-group.full { grid-column: span 1; }
         }
+        /* État caché au départ */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s ease-out;
+}
+
+/* État quand on arrive dessus */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
     </style>
 </head>
 <body>
@@ -194,14 +206,14 @@
         </ul>
     </header>
 
-    <section class="hero" id="accueil">
+    <section class="hero" id="accueil" class="reveal">
         <h1>VOTRE JARDIN,<br><span>NOTRE PASSION.</span></h1>
         <p>Aménagement et entretien d'espaces verts d'exception en Pévèle Carembault.</p>
         <a href="#devis" style="background: var(--vert-clair); color: var(--vert-fonce); padding: 15px 30px; text-decoration: none; font-weight: bold; border-radius: 5px;">Nous contacter</a>
     </section>
 
     <main>
-        <section id="expertise">
+        <section id="expertise" class="reveal">
             <h2 class="titre-vrai">Notre Savoir-Faire</h2>
             <div class="grid">
                 <div class="card">
@@ -237,7 +249,7 @@
             </div>
         </section>
 
-        <section id="equipe" style="background: white; border-radius: 20px; padding: 60px 20px;">
+        <section id="equipe" class="reveal" style="background: white; border-radius: 20px; padding: 60px 20px;">
             <div style="max-width: 1200px; margin: 0 auto;">
                 <h2 class="titre-vrai">L'Équipe MAJARDIN</h2>
                 <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px;">
@@ -251,7 +263,7 @@
             </div>
         </section>
 
-        <section id="realisations">
+        <section id="realisations" class="reveal">
             <h2 class="titre-vrai">Dernières Réalisations</h2>
             <div class="grid-portfolio">
                 <div class="portfolio-item"><img src="chantier1.jpg" alt="Terrasse"></div>
@@ -259,7 +271,7 @@
                 <div class="portfolio-item"><img src="chantier3.jpg" alt="Haie"></div>
             </div>
         </section>
-            <section id="avis" style="padding: 60px 20px; background: #fdfdfd;">
+            <section id="avis" class="reveal" style="padding: 60px 20px; background: #fdfdfd;">
         <section id="avis" style="padding: 60px 20px; background: #fdfdfd;">
         <section style="padding: 60px 20px; background: #fdfdfd; text-align: center;">
     <h2 style="color: #1B4332; margin-bottom: 30px;">Ce que nos clients disent de MAJARDIN</h2>
@@ -283,7 +295,7 @@
     </div>
 </section>
 
-        <section id="devis">
+        <section id="devis" class="reveal">
             <h2 style="color: var(--vert-clair); font-size: 2.5rem; margin-bottom: 30px; text-align: center;">Votre Devis Gratuit</h2>
             <form>
                 <div class="form-grid">
@@ -419,5 +431,21 @@
             m.style.display = (m.style.display === "flex") ? "none" : "flex";
         }
     </script>
+    <script>
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+        }
+    }
+}
+window.addEventListener("scroll", reveal);
+// Pour vérifier dès le chargement (si on est déjà en milieu de page)
+reveal();
+</script>
 </body>
 </html>
